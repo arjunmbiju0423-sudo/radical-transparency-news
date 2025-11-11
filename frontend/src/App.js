@@ -1,50 +1,44 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
+import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import './App.css';
-import axios from 'axios';
+import Home from './pages/Home';
+import StoryDetail from './pages/StoryDetail';
+import Constitution from './pages/Constitution';
+import Topics from './pages/Topics';
+import Search from './pages/Search';
+import Preferences from './pages/Preferences';
 
 function App() {
-  const [articles, setArticles] = useState([]);
-  const [loading, setLoading] = useState(false);
-
-  useEffect(() => {
-    fetchArticles();
-  }, []);
-
-  const fetchArticles = async () => {
-    setLoading(true);
-    try {
-      const response = await axios.get('/api/stories');
-      setArticles(response.data.articles || []);
-    } catch (error) {
-      console.error('Error fetching articles:', error);
-    } finally {
-      setLoading(false);
-    }
-  };
-
   return (
-    <div className="App">
-      <header className="header">
-        <h1>Radical Transparency News</h1>
-        <p>Real-time News with Bias Analysis</p>
-      </header>
-      <main className="container">
-        {loading && <p>Loading articles...</p>}
-        {!loading && articles.length === 0 && <p>No articles found</p>}
-        {!loading && articles.length > 0 && (
-          <div className="articles-grid">
-            {articles.slice(0, 20).map((article, index) => (
-              <article key={index} className="article-card">
-                {article.urlToImage && <img src={article.urlToImage} alt={article.title} />}
-                <h3>{article.title}</h3>
-                <p>{article.description}</p>
-                <a href={article.url} target="_blank" rel="noopener noreferrer">Read More</a>
-              </article>
-            ))}
+    <Router>
+      <div className="App">
+        <nav className="navbar">
+          <div className="nav-container">
+            <Link to="/" className="logo">
+              <h1>Radical Transparency News</h1>
+              <p className="tagline">Provably Honest Synthesis</p>
+            </Link>
+            <div className="nav-links">
+              <Link to="/">Home</Link>
+              <Link to="/topics">Topics</Link>
+              <Link to="/search">Search</Link>
+              <Link to="/constitution">Our Constitution</Link>
+              <Link to="/preferences">Preferences</Link>
+            </div>
           </div>
-        )}
-      </main>
-    </div>
+        </nav>
+        
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/story/:id" element={<StoryDetail />} />
+          <Route path="/constitution" element={<Constitution />} />
+          <Route path="/topics" element={<Topics />} />
+          <Route path="/topics/:category" element={<Home />} />
+          <Route path="/search" element={<Search />} />
+          <Route path="/preferences" element={<Preferences />} />
+        </Routes>
+      </div>
+    </Router>
   );
 }
 
