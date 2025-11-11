@@ -11,6 +11,7 @@ function StoryDetail() {
   const [loading, setLoading] = useState(true);
   const [activeSentence, setActiveSentence] = useState(null);
 
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(() => {
     fetchStory();
   }, [id]);
