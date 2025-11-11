@@ -12,45 +12,37 @@ function Home() {
   const [view, setView] = useState('conflict'); // 'conflict' or 'consensus'
   const filter = 'all'; // 'all', 'politics', 'tech', etc.
 
-  // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(() => {
+    const fetchArticles = async () => {
+      setLoading(true);
+      try {
+        const response = await axios.get(`${API_BASE}/api/stories`, {
+          params: { category: category || filter }
+        });
+        setArticles(response.data.articles || []);
+      } catch (error) {
+        console.error('Error fetching articles:', error);
+      } finally {
+        setLoading(false);
+      }
+    };
+    
     fetchArticles();
   }, [category]);
 
-  const fetchArticles = async () => {
-    setLoading(true);
-    try {
-      const response = await axios.get(`${API_BASE}/api/stories`, {
-        params: { category: category || filter }
-      });
-      setArticles(response.data.articles || []);
-    } catch (error) {
-      console.error('Error fetching articles:', error);
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  const calculateConflictScore = (article) => {
-    // Mock conflict score calculation
-    return Math.random() * 100;
-  };
-
-  if (loading) return <div className="loading">Loading articles...</div>;
+  if (loading) return <div className="loading">Loading news...</div>;
 
   return (
-    <div className="home-page">
-      <h1>Radical Transparency News</h1>
-      
+    <div className="home">
       <div className="feed-toggle">
-        <button 
-          className={`toggle-button ${view === 'conflict' ? 'active' : ''}`}
+        <button
+          className={view === 'conflict' ? 'active' : ''}
           onClick={() => setView('conflict')}
         >
           Conflict Feed
         </button>
-        <button 
-          className={`toggle-button ${view === 'consensus' ? 'active' : ''}`}
+        <button
+          className={view === 'consensus' ? 'active' : ''}
           onClick={() => setView('consensus')}
         >
           Consensus View
@@ -58,20 +50,19 @@ function Home() {
       </div>
 
       <div className="articles-grid">
-        {articles.length === 0 ? (
-          <p>No articles found.</p>
-        ) : (
-          articles.map((article, index) => (
-            <Link to={`/story/${article.id || index}`} key={index} className="article-card">
-              <h3 className="article-title">{article.title}</h3>
-              <p className="article-description">{article.description || article.summary}</p>
-              <div>
-                <span className="glass-box-label">Sources: {article.sources?.length || 0}</span>
-                <span className="glass-box-label">Conflict: {Math.round(calculateConflictScore(article))}%</span>
-              </div>
-            </Link>
-          ))
-        )}
+        {articles.map((article) => (
+          <Link to={`/story/${article.id}`} key={article.id} className="article-card">
+            <div className="glass-box-label">
+              <span className="transparency-score">{article.transparencyScore}%</span>
+            </div>
+            <h3>{article.title}</h3>
+            <p className="article-snippet">{article.snippet}</p>
+            <div className="article-meta">
+              <span className="sources-count">{article.sourcesCount} sources</span>
+              <span className="conflicts-count">{article.conflictsCount} conflicts</span>
+            </div>
+          </Link>
+        ))}
       </div>
     </div>
   );
