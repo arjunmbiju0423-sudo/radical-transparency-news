@@ -8,7 +8,10 @@ const PORT = process.env.PORT || 5000;
 const NEWS_API_KEY = process.env.NEWS_API_KEY || '4af079e1e0784f118148812814c2ce41';
 
 // Middleware
-app.use(cors());
+app.use(cors({
+  origin: ['https://radical-transparency-news.vercel.app', 'http://localhost:3000'],
+  credentials: true
+});
 app.use(express.json());
 
 // Helper function to simulate bias analysis
