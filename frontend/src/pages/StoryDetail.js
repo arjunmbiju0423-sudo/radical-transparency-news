@@ -9,7 +9,7 @@ function StoryDetail() {
   const { id } = useParams();
   const [story, setStory] = useState(null);
   const [loading, setLoading] = useState(true);
-  const [activeSentence, setActiveSentence] = useState(null);
+  // const [activeSentence, setActiveSentence] = useState(null);
 
   useEffect(() => {
     const fetchStory = async () => {
@@ -28,9 +28,9 @@ function StoryDetail() {
     fetchStory();
   }, [id]);
 
-  const showSourcePopup = (sentenceIndex) => {
-    setActiveSentence(sentenceIndex);
-  };
+  // const showSourcePopup = (sentenceIndex) => {
+    // setActiveSentence(sentenceIndex);
+  // };
 
   if (loading) return <div className="loading">Loading transparency report...</div>;
   if (!story) return <div className="error">Story not found</div>;
@@ -58,7 +58,7 @@ function StoryDetail() {
       </div>
 
       <div className="story-content">
-        <p onClick={() => showSourcePopup(0)}>{story.snippet}</p>
+        <p>{story.snippet}</p>
       </div>
 
       <div className="points-of-conflict">
