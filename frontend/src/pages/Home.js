@@ -16,7 +16,7 @@ function Home() {
     const fetchArticles = async () => {
       setLoading(true);
       try {
-        const response = await axios.get(`${API_BASE}/api/stories`, {
+        const response = await axios.get(`${API_BASE}/api/articles`, {
           params: { category: category || filter }
         });
         setArticles(response.data.articles || []);
