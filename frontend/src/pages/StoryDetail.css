@@ -1,0 +1,43 @@
+.story-detail-page {
+  padding: 20px;
+  max-width: 900px;
+  margin: 0 auto;
+  color: white;
+}
+
+.glass-box {
+  background: #1a1a1a;
+  border: 1px solid #0070f3;
+  border-radius: 8px;
+  padding: 20px;
+  margin: 20px 0;
+}
+
+.metric {
+  margin: 10px 0;
+}
+
+.points-of-conflict {
+  background: #2a2a2a;
+  padding: 15px;
+  border-radius: 5px;
+  margin: 15px 0;
+}
+
+.narrative-spectrum {
+  background: #1a1a1a;
+  padding: 20px;
+  border-radius: 8px;
+  margin: 20px 0;
+}
+
+.source-list {
+  margin-top: 20px;
+}
+
+.source-item {
+  padding: 10px;
+  margin: 5px 0;
+  background: #2a2a2a;
+  border-radius: 5px;
+}
