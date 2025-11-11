@@ -5,6 +5,26 @@
   color: white;
 }
 
+/* Topics Grid View */
+.topics-header {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.topics-header h1 {
+  font-size: 2.5rem;
+  margin-bottom: 10px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.topics-header p {
+  font-size: 1.2rem;
+  color: #aaa;
+}
+
 .topics-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
@@ -18,10 +38,232 @@
   border-radius: 8px;
   text-align: center;
   cursor: pointer;
-  transition: transform 0.2s;
+  transition: transform 0.2s, background 0.2s;
+  text-decoration: none;
+  color: white;
+  border: 3px solid transparent;
+  position: relative;
+  overflow: hidden;
 }
 
 .topic-card:hover {
   transform: translateY(-5px);
   background: #2a2a2a;
+}
+
+.topic-icon {
+  font-size: 3rem;
+  width: 80px;
+  height: 80px;
+  margin: 0 auto 15px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+}
+
+.topic-card h3 {
+  margin: 15px 0 10px;
+  font-size: 1.5rem;
+}
+
+.topic-card p {
+  color: #aaa;
+  font-size: 0.95rem;
+  margin-bottom: 10px;
+}
+
+.topic-arrow {
+  position: absolute;
+  bottom: 15px;
+  right: 15px;
+  font-size: 1.5rem;
+  opacity: 0;
+  transition: opacity 0.2s;
+}
+
+.topic-card:hover .topic-arrow {
+  opacity: 1;
+}
+
+/* Topic Detail View */
+.topic-detail-header {
+  text-align: center;
+  padding: 40px 20px;
+  margin-bottom: 30px;
+  background: linear-gradient(135deg, rgba(102, 126, 234, 0.1), rgba(118, 75, 162, 0.1));
+  border-radius: 12px;
+  border-bottom: 3px solid;
+  position: relative;
+}
+
+.back-button {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  color: #667eea;
+  text-decoration: none;
+  font-size: 1rem;
+  padding: 8px 16px;
+  border-radius: 6px;
+  background: rgba(102, 126, 234, 0.1);
+  transition: background 0.2s;
+}
+
+.back-button:hover {
+  background: rgba(102, 126, 234, 0.2);
+}
+
+.topic-detail-icon {
+  font-size: 4rem;
+  width: 100px;
+  height: 100px;
+  margin: 0 auto 20px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 6px 12px rgba(0,0,0,0.4);
+}
+
+.topic-detail-header h1 {
+  font-size: 2.5rem;
+  margin: 15px 0;
+}
+
+.topic-detail-header p {
+  font-size: 1.2rem;
+  color: #aaa;
+}
+
+/* Topic Articles */
+.topic-articles {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.topic-article-card {
+  background: #1a1a1a;
+  padding: 25px;
+  border-radius: 10px;
+  text-decoration: none;
+  color: white;
+  transition: transform 0.2s, box-shadow 0.2s;
+  border-left: 4px solid #667eea;
+}
+
+.topic-article-card:hover {
+  transform: translateX(5px);
+  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+}
+
+.article-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+  font-size: 0.9rem;
+}
+
+.article-topic {
+  font-weight: 600;
+}
+
+.article-date {
+  color: #888;
+}
+
+.topic-article-card h3 {
+  font-size: 1.5rem;
+  margin: 10px 0;
+  color: white;
+}
+
+.article-summary {
+  color: #aaa;
+  margin: 12px 0;
+  line-height: 1.6;
+}
+
+.article-bias-preview {
+  margin-top: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.bias-bar-container {
+  display: flex;
+  gap: 2px;
+  flex: 1;
+  height: 6px;
+  border-radius: 3px;
+  overflow: hidden;
+}
+
+.bias-bar {
+  height: 100%;
+}
+
+.sources-count {
+  font-size: 0.85rem;
+  color: #888;
+  margin-left: 15px;
+  white-space: nowrap;
+}
+
+/* Loading and Empty States */
+.loading-state {
+  text-align: center;
+  padding: 60px 20px;
+  font-size: 1.2rem;
+  color: #aaa;
+}
+
+.no-articles {
+  text-align: center;
+  padding: 60px 20px;
+  background: #1a1a1a;
+  border-radius: 10px;
+  margin-top: 20px;
+}
+
+.no-articles p {
+  font-size: 1.1rem;
+  color: #aaa;
+  margin: 10px 0;
+}
+
+.no-articles p:first-child {
+  font-size: 1.3rem;
+  color: white;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .topics-grid {
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  }
+  
+  .topic-card {
+    padding: 20px;
+  }
+  
+  .topic-icon {
+    width: 60px;
+    height: 60px;
+    font-size: 2rem;
+  }
+  
+  .topic-detail-header {
+    padding: 30px 15px;
+  }
+  
+  .back-button {
+    position: static;
+    display: inline-block;
+    margin-bottom: 20px;
+  }
 }
