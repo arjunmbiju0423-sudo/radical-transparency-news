@@ -24,7 +24,8 @@ function Topics() {
       const topic = topics.find(t => t.slug === category);
       setSelectedTopic(topic);
       fetchArticlesByTopic(category);
-    }
+      // eslint-disable-next-line react-hooks/exhaustive-deps
+}
     }, [category, topics]);
 
   const fetchArticlesByTopic = async (topicSlug) => {
