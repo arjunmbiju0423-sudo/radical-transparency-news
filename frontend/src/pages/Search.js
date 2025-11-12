@@ -20,7 +20,7 @@ function Search() {
       setQuery(searchQuery);
       performSearch(searchQuery);
     }
-  },performSearch]);]);
+    }, [performSearch]);
 
   const performSearch = async (searchQuery = query, currentFilters = filters) => {
     if (!searchQuery.trim()) return;
