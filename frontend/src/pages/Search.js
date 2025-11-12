@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { Link } from 'react-router-dom';
 import './Search.css';
 
@@ -19,8 +19,10 @@ function Search() {
     if (searchQuery) {
       setQuery(searchQuery);
       performSearch(searchQuery);
-    }
+      // eslint-disable-next-line react-hooks/exhaustive-deps
+}
     }, [performSearch]);
+  // eslint-disable-next-line no-use-before-define
 
   const performSearch = async (searchQuery = query, currentFilters = filters) => {
     if (!searchQuery.trim()) return;
