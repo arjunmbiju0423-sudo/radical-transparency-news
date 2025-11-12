@@ -1,0 +1,9 @@
+{
+  "name": "radical-transparency-news",
+  "version": "1.0.0",
+  "description": "News aggregation with AI synthesis and bias analysis",
+  "dependencies": {
+    "axios": "^1.5.0",
+    "@google/generative-ai": "^0.21.0"
+  }
+}
