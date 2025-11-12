@@ -25,7 +25,7 @@ function Topics() {
       setSelectedTopic(topic);
       fetchArticlesByTopic(category);
     }
-  }, [category]);
+  }, [cacategory, topics]);gory]);
 
   const fetchArticlesByTopic = async (topicSlug) => {
     setLoading(true);
