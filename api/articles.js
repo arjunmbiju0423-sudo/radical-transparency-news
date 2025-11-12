@@ -123,9 +123,9 @@ module.exports = async (req, res) => {
     }
     
     // Fetch articles from NewsAPI
-    const response = await axios.get('https://newsapi.org/v2/everything', {
+    const response = await axios.get('https://newsapi.org/v2/top-headlines', {
       params: {
-        q: searchTopic,
+        category: searchTopic, country: 'us',
         apiKey: NEWS_API_KEY,
         pageSize: 50,
         page,
